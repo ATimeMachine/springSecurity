@@ -41,6 +41,7 @@
         margin: auto;
         border-radius: 10px;
         text-align: center;
+        cursor: pointer;
     }
 </style>
 <body>
@@ -49,15 +50,38 @@
             登陆
         </div>
         <div class="input">
-            <input type="text" placeholder="输入账号">
+            <input id="user" type="text" placeholder="输入账号">
         </div>
         <div class="input">
-            <input type="password" placeholder="输入密码" >
+            <input id="password" type="password" placeholder="输入密码" >
         </div>
 
         <div class="btn">
             登陆
         </div>
     </div>
+
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(".btn").click(function () {
+            console.log($("#user").val())
+            console.log($("#password").val())
+            $.ajax({
+                url: '/login',
+                type: 'post',
+                data: {
+                    user: $("#user").val(),
+                    password: $("#password").val()
+                },
+                dataType: 'json',
+                success: function (res) {
+                    window.location.href = "https://www.baidu.com/"
+                    console.log(res)
+                }
+            })
+        })
+
+    </script>
 </body>
 </html>
